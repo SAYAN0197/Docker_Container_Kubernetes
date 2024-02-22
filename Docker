@@ -1,0 +1,47 @@
+##### This Document is specially for the Docker Basic understanding #########
+### What is Docker?
+Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly. With Docker, you can manage your infrastructure in the same ways you manage your applications. By taking advantage of Docker's methodologies for shipping, testing, and deploying code, you can significantly reduce the delay between writing code and running it in production.
+
+
+
+
+####Process for install Docker in the Local machine######
+yum update -y             // 
+yum install docker -y     // To install docker in the Local Machine 
+systemctl start docker    // To start docker (after the docker installation of docker we need to restart the docker)
+systemctl status docker   //To check the docker status
+
+**Initially after installing the docker it is not started automatically so we need to start it manually.
+
+docker version            //To check the Docker version
+docker info (docker client)
+docker run <container name> //To create a docker container
+***By default container runs in the attached mode
+docker run ubuntu
+docker run nginx
+*** To run Container in detach mode we need to execute the docker run the command with -d(detach mode) 
+docker run -d nginx      //create a docker container in detach mode
+ 
+docker ps                //To see the created running container
+docker ps -a             //
+***To create a container we always need an image.
+  Images can be stored locally (on your desktop) or remotely (Docker Hub repository), where it found the images it pulled the images.||| https://hub.docker.com/
+***Docker daemon: The backend services the the Docker
+NB: If there is no process running the docker container will automatically go down.
+
+docker run ubuntu ps -ef   //To check any running process docker container.
+
+docker run --it ubuntu bash  //create a new container and get inside the docker container(--it: inside the terminal)
+docker exec -it <container id> bash  // get inside a running container
+Cd /var/lib/docker //root directory for docker
+
+***TO INSTALL THE COMMAND THAT ARE NOT PRESENT IN THE DOCKER
+apt update -y
+apt install iputils-ping  //to enable the ping command inside the container
+
+
+
+
+
+
+
