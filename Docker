@@ -26,10 +26,22 @@ docker run -d nginx      //create a docker container in detach mode
  
 docker ps                //To see the created running process 
 docker ps -a             // To see any kind of process
+docker stop <container name> // To stop a container
+
+***To remove a container you must stop the container first. 
+docker container prune   //To remove all stopped container
 
 ***To create a container we always need an image.
   Images can be stored locally (on your desktop) or remotely (Docker Hub repository), where it found the images it pulled the images.||| https://hub.docker.com/
-***Docker daemon: The backend services the the Docker
+  Image is a filesystem from where you can create a container
+ docker images //Show all the docker images 
+
+***To remove an image.
+docker rmi <image name>   //To remove the docker images
+docker pull <image name>   //To pull the image from any repository
+docker image inspect <image name> //To show the metadata related to images
+
+***Docker daemon: The backend services the Docker
 NB: If there is no process running the docker container will automatically go down.
 
 docker run ubuntu ps -ef   //To check any running process docker container.
@@ -41,6 +53,7 @@ Cd /var/lib/docker //root directory for docker
 ***TO INSTALL THE COMMAND THAT ARE NOT PRESENT IN THE DOCKER
 apt update -y
 apt install iputils-ping  //to enable the ping command inside the container
+
 
 
 
