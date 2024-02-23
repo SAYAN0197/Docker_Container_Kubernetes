@@ -16,14 +16,17 @@ systemctl status docker   //To check the docker status
 docker version            //To check the Docker version
 docker info (docker client)
 docker run <container name> //To create a docker container
+
 ***By default container runs in the attached mode
 docker run ubuntu
 docker run nginx
+
 *** To run Container in detach mode we need to execute the docker run the command with -d(detach mode) 
 docker run -d nginx      //create a docker container in detach mode
  
-docker ps                //To see the created running container
-docker ps -a             //
+docker ps                //To see the created running process 
+docker ps -a             // To see any kind of process
+
 ***To create a container we always need an image.
   Images can be stored locally (on your desktop) or remotely (Docker Hub repository), where it found the images it pulled the images.||| https://hub.docker.com/
 ***Docker daemon: The backend services the the Docker
