@@ -1,21 +1,73 @@
 ##### This Document is specially for the Docker Basic understanding #########
+docker helps make the process of application deployment very easy and efficient and resolves a lot of issues related to deploying the application.
+     Docker is a tool designed to make it easier to deploy and run applications by using 
+     containers
+
+	    Conatiner allows a developer to package up an application with all of the parts it needs,      such as libraries and other dependencies, and ship it all out as one package.
+
 ### What is Docker?
 Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly. With Docker, you can manage your infrastructure in the same ways you manage your applications. By taking advantage of Docker's methodologies for shipping, testing, and deploying code, you can significantly reduce the delay between writing code and running it in production.
 
+How does Docker work?
+----------------
+ Workflow:
+-----------
+ developer ---->Docker File---->Docker images(Stored in Docker Hub)----->Docker Conatiner
+ 
+The developer will define all the applications, requirements, and dependencies in a file called Dockerfile then we will use it to create Docker images that images are stored in Docker Hub. Pulling the Docker images from the Docker hub(online cloud repository) we can create a Container (it is the run time instance of the docker image)in any environment.
 
-
+Container VS virtualization
+---------------------------
+ In the case of VM, they rely on the Hypervisor. Hypervisor is 
+ 
+ Containers rely on a kernel(Container engine) that uses the host operating system.
+ 
+ Docker client-server architecture
+------------------------------------
+ 
+ The docker daemon(server) receives the commands from the Docker client through Docker CLI or REST API's
+ Docker client and daemon can be present on the same host(machine) or a different host.
+ 
+ why use docker:
+----------------
+ 
+ An application inside a container can run on any system that has docker installed. So there is no need to build and configure the app multiple times on different platforms.
+ 
+ with docker, you can test your application inside a container and ship it inside a container.
+ This means the environment in which your test is identical to the one on which the app will run in production
+ 
+ with docker every application works in isolation in its container and does not interfere with each other applications running on the same system.
+ So multiple containers can run on the same system without interference.
+ For removal of also, you can just delete the particular container and it will not leave behind any files or traces on the system
 
 ####Process for install Docker in the Local machine######
-yum update -y             // 
+uname -r          //information about OS
+docker --version /docker -v  //to check the version
+docker --help  // to check all the possible option
+yum update -y             // update all the packeges
 yum install docker -y     // To install docker in the Local Machine 
 systemctl start docker    // To start docker (after the docker installation of docker we need to restart the docker)
+or,
+sudo service docker start
 systemctl status docker   // To check the docker status
+or,
+sudo service docker stop
+sudo yum remove docker  //to remove/uninstall the docker
+docker info   // all the information about the docker
+docker stats
+docker top
+sudo usermod -a -G docker <user name?>
 
 **Initially after installing the docker it is not started automatically so we need to start it manually.
 
 docker version            // To check the Docker version
 docker info (docker client)
-docker run <container name> // To create a docker container
+
+/*** Docker container & Image:
+ ----------------------
+docker run <image name> // To create a docker container
+docker pull <image name>   // To pull the image from any repository
+docker image inspect <image name> // To show the metadata related to images
 
 ***By default container runs in the attached mode
 docker run ubuntu
@@ -26,7 +78,13 @@ docker run -d nginx      // create a docker container in detach mode
  
 docker ps                // To see the created running process 
 docker ps -a             // To see any kind of process
+docker start <container id>  // start the container
 docker stop <container name> // To stop a container
+docker pause <container id>  // pause the container
+docker unpause <container id>  // unpause the container
+docker attach <container id>  //to attach the container
+docker kill <container id>   // to kill container
+docker rm <container id>  //remove container
 
 ***To remove a container you must stop the container first. 
 docker container prune   // To remove all stopped container
@@ -34,19 +92,20 @@ docker container prune   // To remove all stopped container
 ***To create a container we always need an image.
   Images can be stored locally (on your desktop) or remotely (Docker Hub repository), where it found the images it pulled the images.||| https://hub.docker.com/
   Image is a filesystem from where you can create a container
- docker images // Show all the docker images 
+ docker images   // Show all the docker images 
+ docker images -q   // to see the image ID
+ docker inspect images   // to get image details
+ docker images -f <image name>   //filter images
 
 ***To remove an image.
 docker rmi <image name>   // To remove the docker images
-docker pull <image name>   // To pull the image from any repository
-docker image inspect <image name> // To show the metadata related to images
 
 ***Docker daemon: The backend services the Docker
 NB: If there is no process running the docker container will automatically go down.
 
 docker run ubuntu ps -ef   // To check any running process docker container.
 
-docker run --it ubuntu bash  // create a new container and get inside the docker container(--it: inside the terminal)
+docker run --it ubuntu bash  // create a new container and get inside the docker container(--it:<iterative mode> inside the terminal)
 docker exec -it <container id> bash  // Get inside a running container
 Cd /var/lib/docker //root directory for docker
 
